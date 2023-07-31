@@ -1,0 +1,23 @@
+{
+  "name": "js-basic-hoidanit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahihihihihihi/node-js-basic-hoidanit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahihihihihihi/node-js-basic-hoidanit/issues"
+  },
+  "homepage": "https://github.com/ahihihihihihi/node-js-basic-hoidanit#readme",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
