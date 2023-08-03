@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Edit User</title>
+</head>
+
+<body>
+    <div class="create-user-container">
+        <form action="/update-user" method="POST">
+            <div><b>Edit user:</b></div>
+            <div>
+                <label>First Name:</label>
+                <input type="text" name="firstName" value="<%= dataUser.firstName %>" />
+            </div>
+            <div>
+                <label>Last Name:</label>
+                <input type="text" name="lastName" value="<%= dataUser.lastName %>" />
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="email" name="email" value="<%= dataUser.email %>" />
+            </div>
+            <div>
+                <label>Address:</label>
+                <input type="text" name="address" value="<%= dataUser.address %>" />
+            </div>
+            <input name="id" value="<%= dataUser.id %>" hidden />
+            <div>
+                <button type="submit" class="btn-submit">Submit</button>
+            </div>
+
+        </form>
+
+    </div>
+</body>
+
+</html>
