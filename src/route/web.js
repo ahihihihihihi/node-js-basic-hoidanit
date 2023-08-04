@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     // By default, multer removes file extensions so let's add them back
     filename: function (req, file, cb) {
         // cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-        cb(null, 'image' + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, 'image' + '-' + Date.now() + Math.floor(Math.random() * 1000) + path.extname(file.originalname));
     }
 });
 
@@ -31,6 +31,8 @@ const imageFilter = function (req, file, cb) {
 
 let upload = multer({ storage: storage, fileFilter: imageFilter });
 
+let uploadMultipleFiles = multer({ storage: storage, fileFilter: imageFilter }).array('multiple_images', 10);
+
 //------------------ multer --------------------------------------
 
 const initWebRoute = (app) => {
@@ -43,6 +45,21 @@ const initWebRoute = (app) => {
 
     router.get('/upload', homeController.getUploadFilePage);
     router.post('/upload-profile-pic', upload.single('profile_pic'), homeController.handleUploadFile);
+    router.post('/upload-multiple-images', (req, res, next) => {
+        uploadMultipleFiles(req, res, (err) => {
+            if (err instanceof multer.MulterError && err.code === "LIMIT_UNEXPECTED_FILE") {
+                // handle multer file limit error here
+                res.send('LIMIT_UNEXPECTED_FILE')
+            } else if (err) {
+                res.send(err)
+            }
+
+            else {
+                // make sure to call next() if all was well
+                next();
+            }
+        })
+    }, homeController.handleUploadMultipleFiles)
 
     router.get('/about', (req, res) => {
         res.send('a hi hi');
